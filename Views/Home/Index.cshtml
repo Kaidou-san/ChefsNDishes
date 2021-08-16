@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Chef
+
+<div class="text-center">
+    <h1 class="display-4">Check out our roster of Chefs</h1>
+    <a href="/addChef">Add Chef</a> |
+    <a href="/addDish">Add Dish</a>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th># of Dishes</th>
+    </tr>
+    @{
+        foreach(var c in ViewBag.AllChefs)
+        {
+            <tr>
+                <td>@c.FirstName @c.LastName</td>
+                <td>@(string.Format("{0}", Math.Round(Math.Abs(((DateTime.Now - Convert
+                    .ToDateTime(c.DOB)).TotalDays))/365).ToString()))</td>
+                <td>@c.AllDishes</td>
+
+            </tr>
+        }
+    }
